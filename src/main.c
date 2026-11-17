@@ -16,7 +16,7 @@ int getJSON(cJSON **json){
         printf("failed to load quotes:(\n");
         return 1;
     }
-    char buffer[1024] = {0};
+    char buffer[1024*4] = {0};
     fread(buffer, sizeof(char), sizeof(buffer), file);
     fclose(file);
 
@@ -45,7 +45,7 @@ int main() {
     int g = getJSON(&json);
     if (g>0) return g;
 
-    const char * idx = getRand(1, 3);
+    const char * idx = getRand(1, 11);
     getQuote(json, idx);
 
     cJSON_Delete(json);
