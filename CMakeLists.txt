@@ -26,7 +26,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     cjson
 )
 
-target_compile_definitions(${PROJECT_NAME} PRIVATE 
-    SHADER_DIR="${CMAKE_CURRENT_SOURCE_DIR}/shaders/"
-)
 
