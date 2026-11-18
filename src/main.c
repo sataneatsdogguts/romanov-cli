@@ -61,7 +61,6 @@ int main() {
     if (g>0) return g;
 
     const char * idx = getRand(1, max_idx);
-    printf("%s", idx);
     getQuote(json, idx);
 
     cJSON_Delete(json);
