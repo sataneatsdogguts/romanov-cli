@@ -5,7 +5,6 @@
 #include <cjson/cJSON.h>
 
 const char* QUOTES_PATH = "data/quotes.json";
-const int max_idx = 12;
 
 const char * getRand(int min, int max){
     static char buffer[5];
@@ -60,6 +59,7 @@ int main() {
     int g = getJSON(&json);
     if (g>0) return g;
 
+    const int max_idx = cJSON_GetArraySize(json);
     const char * idx = getRand(1, max_idx);
     getQuote(json, idx);
 
