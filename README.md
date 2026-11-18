@@ -18,7 +18,7 @@
 Устанавливается локально в папку `~/.local` (без `sudo`):
 
 ```bash
-git clone 
+git clone https://github.com/sataneatsdogguts/romanov-cli.git
 cd romanov
 cmake -B build
 cmake --build build
