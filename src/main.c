@@ -4,8 +4,6 @@
 #include <time.h>
 #include <cjson/cJSON.h>
 
-const char* QUOTES_PATH = "data/quotes.json";
-
 const char * getRand(int min, int max){
     static char buffer[5];
     int num = min + rand() % (max - min + 1);

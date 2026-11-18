@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.14)
 
-project(main LANGUAGES C)
+project(romanov LANGUAGES C)
 
-find_package(cJSON REQUIRED)
+set(CMAKE_INSTALL_PREFIX "$ENV{HOME}/.local" CACHE PATH "..." FORCE)
+
+include(GNUInstallDirs)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CJSON REQUIRED IMPORTED_TARGET libcjson)
 
 add_executable(${PROJECT_NAME}
     src/main.c
@@ -10,20 +14,17 @@ add_executable(${PROJECT_NAME}
 
 target_compile_options(${PROJECT_NAME} PRIVATE
     -Wall
-    -fsanitize=address
-    -g
 )
-target_link_options(${PROJECT_NAME} PRIVATE
-    -Wall
-    -fsanitize=address
-    -g
-)
-target_include_directories(${PROJECT_NAME} PRIVATE
-    # glad/include
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE
+    QUOTES_PATH="${CMAKE_INSTALL_FULL_DATADIR}/romanov/quotes.json"
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
-    cjson
+    PkgConfig::CJSON
 )
+
+install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES data/quotes.json DESTINATION ${CMAKE_INSTALL_DATADIR}/romanov)
 
 
